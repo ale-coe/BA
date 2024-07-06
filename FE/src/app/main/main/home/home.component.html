@@ -1,0 +1,52 @@
+<div class="info">
+  <mat-card>
+    <mat-card-content class="points">
+      <h2>
+        <ng-container *ngIf="points !== null">
+          {{ points | number : "1.0-0" }}
+          {{ points === 1 ? "Punkt" : "Punkte" }} im
+          {{ now | date : "MMMM" }} erhalten
+        </ng-container>
+        <ng-container *ngIf="points === null"
+          >Punkte werden ermittelt...</ng-container
+        >
+      </h2>
+    </mat-card-content>
+  </mat-card>
+  <mat-card class="events">
+    <mat-card-header>
+      <mat-card-subtitle>Aktuelle Events</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <ng-container *ngIf="!eventDisplayer$; else event"
+        >Events werden geladen...</ng-container
+      >
+      <ng-template #event>
+        <p>
+          {{ (eventDisplayer$ | async)?.name }} ({{
+            (eventDisplayer$ | async)?.additionalInfo
+          }})
+        </p>
+      </ng-template>
+    </mat-card-content>
+  </mat-card>
+</div>
+<div class="map-container" appMapContainer></div>
+<div class="photo-btn-wrapper">
+  <button
+    [disabled]="isLoading"
+    mat-fab
+    color="primary"
+    (click)="filePicker.click()"
+  >
+    <mat-icon>photo_camera</mat-icon>
+  </button>
+  <mat-spinner *ngIf="isLoading" diameter="30"></mat-spinner>
+</div>
+<input
+  hidden
+  [multiple]="false"
+  type="file"
+  (change)="onFileChange(filePicker.files)"
+  #filePicker
+/>

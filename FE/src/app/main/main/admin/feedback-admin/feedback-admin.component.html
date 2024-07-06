@@ -1,0 +1,63 @@
+<div class="overlay-wrapper">
+  <div class="feedback">
+    <mat-card *ngFor="let _feedback of feedback; index as i">
+      <mat-card-header>
+        <mat-card-title>{{
+          _feedback.user.username || _feedback.user.email
+        }}</mat-card-title>
+        <mat-card-subtitle>{{
+          _feedback.date | date : "dd.MM.yyyy HH:mm"
+        }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-form-field>
+          <mat-label>Feedback</mat-label>
+          <textarea
+            [disabled]="true"
+            [value]="_feedback.text"
+            matInput
+          ></textarea>
+        </mat-form-field>
+        <div class="select-wrapper">
+          <mat-form-field>
+            <mat-label>Typ</mat-label>
+            <mat-select
+              [value]="_feedback.feedbackType.label"
+              [disabled]="true"
+            >
+              <mat-option [value]="_feedback.feedbackType.label">{{
+                _feedback.feedbackType.label
+              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Kategorie</mat-label>
+            <mat-select [formControl]="formArray.at(i)">
+              <mat-option
+                *ngFor="let category of categories"
+                [value]="category.feedbackCategoryId"
+                >{{ category.label }}</mat-option
+              >
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <app-loading-button
+          [disabled]="isLoading || formArray.at(i).status !== 'VALID'"
+          color=""
+          (_click)="updateFeedback(i)"
+          >Speichern</app-loading-button
+        >
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <app-overlay *ngIf="isLoading"></app-overlay>
+</div>
+<mat-paginator
+  [hidePageSize]="true"
+  [length]="length"
+  [pageSize]="10"
+  [pageSizeOptions]="[5, 10, 25, 100]"
+>
+</mat-paginator>

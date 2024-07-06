@@ -1,0 +1,46 @@
+<div class="overlay-wrapper">
+  <h2>Ranking für {{ yesterday | date : "MMMM (yyyy)" }}</h2>
+  <span class="last-updated">Stand: {{ yesterday | date : "dd.MM.yyyy" }}</span>
+  <div class="ranking">
+    <mat-card
+      *ngFor="let placement of ranking"
+      [ngClass]="{ self: placement.userId === (userId$ | async) }"
+    >
+      <mat-card-content>
+        <span class="placement">{{ placement.placement }}.</span>
+        <div>
+          <app-image
+            class="app-image"
+            [src]="
+              placement.profileImage
+                ? [
+                    'assets/loading.png',
+                    'assets/profile-placeholder.webp',
+                    'profileImage',
+                    placement.profileImage
+                  ]
+                : 'assets/profile-placeholder.webp'
+            "
+          ></app-image>
+          <span *ngIf="placement.username || placement.city" class="userinfo">
+            <ng-container *ngIf="placement.username"
+              >{{ placement.username }}
+            </ng-container>
+            <ng-container *ngIf="placement.city"
+              >({{ placement.city }})</ng-container
+            ></span
+          >
+        </div>
+        <span class="points">{{ placement.placementPoints }} Punkte</span>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <app-overlay *ngIf="isLoading"></app-overlay>
+</div>
+<mat-paginator
+  [hidePageSize]="true"
+  [length]="length"
+  [pageSize]="10"
+  [pageSizeOptions]="[5, 10, 25, 100]"
+>
+</mat-paginator>

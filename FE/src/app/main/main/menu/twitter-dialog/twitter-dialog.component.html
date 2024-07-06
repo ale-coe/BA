@@ -1,0 +1,49 @@
+<h2 mat-dialog-title>Tweeten</h2>
+<mat-dialog-content>
+  <mat-spinner *ngIf="loadingAccount" diameter="40"></mat-spinner>
+  <ng-container *ngIf="!loadingAccount">
+    <ng-container *ngIf="!loginUrl; else notConnected">
+      <form [formGroup]="tweetFormGroup" (ngSubmit)="postTweet()">
+        <p>
+          Wir fügen jedem Tweet übrigens automatisch den Hashtag
+          <strong>#Cash4TrashAppOfficial</strong> hinzu ;)
+        </p>
+        <mat-form-field>
+          <mat-label>Tweet</mat-label>
+          <textarea formControlName="tweet" matInput></textarea>
+        </mat-form-field>
+        <button
+          mat-raised-button
+          color="primary"
+          [disabled]="isLoading || tweetFormGroup.status !== 'VALID'"
+        >
+          Senden
+        </button>
+      </form>
+    </ng-container>
+  </ng-container>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button [disabled]="isLoading" mat-button mat-dialog-close>Schließen</button>
+</mat-dialog-actions>
+
+<ng-template #notConnected>
+  <form [formGroup]="connectFormGroup" (ngSubmit)="connectAccount()">
+    <p>
+      Klicke <a *ngIf="loginUrl" target="_blank" [href]="loginUrl">hier</a>, um
+      einen PIN zum Verknüpfen deines X-Accounts zu erhalten
+    </p>
+
+    <mat-form-field>
+      <mat-label>Pin</mat-label>
+      <input formControlName="pin" matInput />
+    </mat-form-field>
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="isLoading || connectFormGroup.status !== 'VALID'"
+    >
+      Veknüpfen
+    </button>
+  </form>
+</ng-template>

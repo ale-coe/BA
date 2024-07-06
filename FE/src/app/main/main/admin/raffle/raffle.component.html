@@ -1,0 +1,44 @@
+<div class="overlay-wrapper">
+  <div class="raffles">
+    <mat-card
+      *ngFor="let raffle of raffles; index as i"
+      [formGroup]="formArray.at(i)"
+    >
+      <mat-card-header>
+        <mat-card-title>{{ raffle.description }}</mat-card-title>
+        <mat-card-subtitle
+          >{{ raffle.startDate | date }} -
+          {{ raffle.endDate | date }}</mat-card-subtitle
+        >
+      </mat-card-header>
+
+      <mat-card-content>
+        <mat-form-field>
+          <mat-label>Preis</mat-label>
+          <mat-select formControlName="product">
+            <mat-option [value]="formArray.at(i).get('product')?.value">{{
+              formArray.at(i).get("product")?.value
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-checkbox formControlName="stopped">Aktiv</mat-checkbox>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <app-loading-button [disabled]="isLoading" color=""
+          >Speichern</app-loading-button
+        >
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <app-overlay *ngIf="isLoading"></app-overlay>
+</div>
+<mat-paginator
+  [hidePageSize]="true"
+  [length]="length"
+  [pageSize]="10"
+  [pageSizeOptions]="[5, 10, 25, 100]"
+>
+</mat-paginator>
+<button mat-fab color="primary" (click)="addProduct()">
+  <mat-icon>add</mat-icon>
+</button>

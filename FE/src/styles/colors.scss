@@ -1,0 +1,126 @@
+$white: #fff;
+$black: #000;
+$black20: rgba(0, 0, 0, 0.2);
+
+$mat-primary: (
+  50: #e3f5e5,
+  100: #b8e6be,
+  200: #89d693,
+  300: #59c567,
+  400: #36b847,
+  500: #12ac26,
+  600: #10a522,
+  700: #0d9b1c,
+  800: #0a9217,
+  900: #05820d,
+  A100: #b0ffb3,
+  A200: #7dff81,
+  A400: #4aff50,
+  A700: #31ff37,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000,
+  ),
+);
+
+$mat-accent: (
+  50: #e0f6ff,
+  100: #b3e9fe,
+  200: #80dafe,
+  300: #4dcbfd,
+  400: #26c0fc,
+  500: #00b5fc,
+  600: #00aefc,
+  700: #00a5fb,
+  800: #009dfb,
+  900: #008dfa,
+  A100: #ffffff,
+  A200: #edf6ff,
+  A400: #badeff,
+  A700: #a1d1ff,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #000000,
+    600: #000000,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000,
+  ),
+);
+
+$mat-warn: (
+  50: #ffebe4,
+  100: #ffcdbd,
+  200: #ffab91,
+  300: #ff8964,
+  400: #ff7043,
+  500: #ff5722,
+  600: #ff4f1e,
+  700: #ff4619,
+  800: #ff3c14,
+  900: #ff2c0c,
+  A100: #ffffff,
+  A200: #fff7f6,
+  A400: #ffc9c3,
+  A700: #ffb2a9,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #000000,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000,
+  ),
+);
+
+@function get-theme-color($theme: "primary", $density: 500) {
+  @if $theme == "primary" {
+    @return map-get($mat-primary, $density);
+  }
+  @if $theme == "accent" {
+    @return map-get($mat-accent, $density);
+  }
+  @if $theme == "warn" {
+    @return map-get($mat-warn, $density);
+  }
+}
+
+@function get-theme-contrast-color($theme: "primary", $density: 500) {
+  @if $theme == "primary" {
+    @return map-get(map-get($mat-primary, "contrast"), $density);
+  }
+  @if $theme == "accent" {
+    @return map-get(map-get($mat-accent, "contrast"), $density);
+  }
+  @if $theme == "warn" {
+    @return map-get(map-get($mat-warn, "contrast"), $density);
+  }
+}

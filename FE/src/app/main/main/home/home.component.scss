@@ -1,0 +1,54 @@
+@import "mixins";
+
+@include hostBaseStyle;
+
+:host {
+  padding: unset;
+  position: relative;
+}
+
+.info {
+  flex: 0 0 200px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  .points {
+    h2 {
+      text-align: center;
+    }
+  }
+
+  .events {
+    flex: 1 1 0;
+
+    .mat-mdc-card-content {
+      flex: 1 1 0;
+      align-items: center;
+      display: flex;
+    }
+  }
+}
+
+.map-container {
+  flex: 1 1 0;
+}
+
+.photo-btn-wrapper {
+  position: absolute;
+  z-index: 10000;
+  bottom: 20px;
+  right: 20px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mat-mdc-progress-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

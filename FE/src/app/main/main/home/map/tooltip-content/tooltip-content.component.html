@@ -1,0 +1,31 @@
+<div [hidden]="hidden" class="tooltip-content">
+  <ng-container *ngIf="type">
+    <ng-container [ngSwitch]="type">
+      <ng-container *ngSwitchCase="eMarkerType.USER">
+        <h3>Andere Nutzer</h3>
+        <div class="profile-image">
+          <app-image
+            [src]="data.src"
+            (imageLoaded)="handleImageLoaded()"
+          ></app-image>
+        </div>
+        <p>{{ data.text || "Unbekannter Benutzer" }}</p>
+      </ng-container>
+      <ng-container *ngSwitchCase="eMarkerType.OWN">
+        <h3>Du</h3>
+        <p>Hier befindest du dich</p>
+      </ng-container>
+      <ng-container *ngSwitchCase="eMarkerType.POI">
+        <h3>Wichtiger Ort</h3>
+        <p>{{ data.text }}</p>
+      </ng-container>
+      <ng-container *ngSwitchCase="eMarkerType.EVENT">
+        <h3>Event</h3>
+        <p>{{ data.text }}</p>
+      </ng-container>
+      <ng-container *ngSwitchDefault>
+        <p>Das hat nicht geklappt</p>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+</div>

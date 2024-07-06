@@ -1,0 +1,25 @@
+<form [formGroup]="formGroup" (ngSubmit)="sendFeedback()" #f="ngForm">
+  <label>Worum geht es?</label>
+  <mat-radio-group formControlName="feedbackTypeId">
+    <mat-radio-button
+      *ngFor="let feedbackType of feedbackTypes"
+      [value]="feedbackType.feedbackTypeId"
+      >{{ feedbackType.label }}</mat-radio-button
+    >
+  </mat-radio-group>
+
+  <mat-form-field>
+    <mat-label>Schreib uns, was dich bewegt</mat-label>
+    <textarea formControlName="text" matInput rows="10"></textarea>
+    <mat-error
+      *ngFor="let error of this.formGroup.controls.text.errors | formError"
+      >{{ error }}</mat-error
+    >
+  </mat-form-field>
+
+  <app-loading-button
+    [disabled]="isLoading || formGroup.status !== 'VALID'"
+    [showSpinner]="isLoading"
+    >Abschicken</app-loading-button
+  >
+</form>

@@ -1,0 +1,112 @@
+<h2 mat-dialog-title>Ziel von Cash4Trash</h2>
+<mat-dialog-content>
+  <p>
+    Wir wollen gemeinsam die Welt zu einem saubereren Ort machen. Fotografiere
+    Müllsansammlungen in deiner Umgebung und entsorge sie fachgerecht. Neben
+    einem guten Gewissen soll aber noch mehr für dich drin sein. Für jedes
+    hochgeladene Foto erhältst du Punkte, die du gegen tolle
+    <a [routerLink]="['/', 'main', 'products']" mat-dialog-close>Belohnungen</a>
+    eintauschen kannst. Zusammen können wir viel erreichen!
+  </p>
+  <p>
+    Wie du Punkte sammeln kannst und wie viele Punkte du für welche Aktion
+    erhältst, erfährst du hier:
+  </p>
+  <table>
+    <thead>
+      <tr>
+        <th class="label">Aktion</th>
+        <th class="value">Punkte</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="label">Freund einladen und erfolgreich registrieren</td>
+        <td class="value">5</td>
+      </tr>
+      <tr>
+        <td class="label">Tweeten</td>
+        <td class="value">1</td>
+      </tr>
+      <tr>
+        <td class="label">Müllhaufen fotografieren und beseitigen*</td>
+        <td class="value">2 - 11</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br />
+
+  <p>
+    * Die Gesamtpunktzahl ergibt sich aus der Addition der Punkte für Kategorie und
+    Menge des Mülls:
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th class="label">Müllkategorie</th>
+        <th class="value">Punkte</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="label">Biologisch abbaubar</td>
+        <td class="value">1</td>
+      </tr>
+      <tr>
+        <td class="label">Recyclebar</td>
+        <td class="value">2</td>
+      </tr>
+      <tr>
+        <td class="label">Restmüll</td>
+        <td class="value">3</td>
+      </tr>
+      <tr>
+        <td class="label">Elektromüll</td>
+        <td class="value">4</td>
+      </tr>
+      <tr>
+        <td class="label">Sperrmüll</td>
+        <td class="value">5</td>
+      </tr>
+      <tr>
+        <td class="label">Bauschutt</td>
+        <td class="value">6</td>
+      </tr>
+      <tr>
+        <td class="label">Sondermüll</td>
+        <td class="value">7</td>
+      </tr>
+    </tbody>
+  </table>
+  <table>
+    <thead>
+      <tr>
+        <th class="label">Müllmenge</th>
+        <th class="value">Punkte</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="label">Klein</td>
+        <td class="value">1</td>
+      </tr>
+      <tr>
+        <td class="label">Mittel</td>
+        <td class="value">2</td>
+      </tr>
+      <tr>
+        <td class="label">Groß</td>
+        <td class="value">3</td>
+      </tr>
+      <tr>
+        <td class="label">Sehr Groß</td>
+        <td class="value">4</td>
+      </tr>
+    </tbody>
+  </table>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Schließen</button>
+</mat-dialog-actions>

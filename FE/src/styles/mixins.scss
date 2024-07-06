@@ -1,0 +1,29 @@
+@mixin cardInMid {
+  :host {
+    flex: 1 1 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .mat-mdc-card-content {
+      padding: 30px !important;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
+
+@mixin hostBaseStyle($has-paginator: false) {
+  :host {
+    flex: 1 1 0;
+    padding: 10px;
+
+    @if $has-paginator {
+      padding: 10px 10px 0 10px;
+    }
+
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+}

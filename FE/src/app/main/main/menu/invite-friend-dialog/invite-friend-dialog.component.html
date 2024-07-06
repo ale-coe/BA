@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>Freund einladen</h2>
+<mat-dialog-content>
+  <mat-form-field>
+    <mat-label>Email</mat-label>
+    <input [formControl]="formControl" matInput />
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button [disabled]="isLoading" mat-button mat-dialog-close>Schließen</button>
+  <app-loading-button
+    color=""
+    [disabled]="isLoading || formControl.status !== 'VALID'"
+    [showSpinner]="isLoading"
+    (_click)="inviteFriend()"
+    >Einladen
+  </app-loading-button>
+</mat-dialog-actions>

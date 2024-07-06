@@ -1,0 +1,46 @@
+@import "mixins";
+
+@include hostBaseStyle;
+
+:host {
+  padding: unset;
+  position: relative;
+}
+
+.overlay-wrapper {
+  flex: 1 1 0;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  .landmarks {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1 1 0;
+    overflow-y: scroll;
+    padding: 5px 5px 0 5px;
+    position: relative;
+
+    .mat-mdc-card {
+      &:last-of-type {
+        margin-bottom: 3px;
+      }
+
+      .mat-mdc-card-content {
+        margin-top: 5px;
+
+        .mat-mdc-form-field {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+.mat-mdc-fab {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}

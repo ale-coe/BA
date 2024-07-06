@@ -1,0 +1,58 @@
+<mat-card>
+  <mat-card-content>
+    <h1>Cash4Trash</h1>
+    <img src="assets/icons/icon-192x192.png" alt="logo" width="192" />
+    <form class="register-form" [formGroup]="formGroup" (ngSubmit)="register()">
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input formControlName="email" matInput type="email" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Passwort</mat-label>
+        <input type="password" formControlName="password" matInput #password />
+        <button
+          type="button"
+          [disabled]="isLoading || !formGroup.controls.password.value.length"
+          matSuffix
+          mat-icon-button
+          (click)="showContent(password)"
+        >
+          <mat-icon>visibility</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Passwort bestätigen</mat-label>
+        <input
+          type="password"
+          formControlName="confirmPassword"
+          matInput
+          #confirmPassword
+        />
+        <button
+          type="button"
+          [disabled]="
+            isLoading || !formGroup.controls.confirmPassword.value.length
+          "
+          matSuffix
+          mat-icon-button
+          (click)="showContent(confirmPassword)"
+        >
+          <mat-icon>visibility</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <app-loading-button
+        [showSpinner]="isLoading && !registered"
+        [disabled]="isLoading || formGroup.status !== 'VALID'"
+        >Registrieren</app-loading-button
+      >
+    </form>
+
+    <p class="login-link">
+      Zurück zum
+      <a [routerLink]="['/', 'auth', 'login']">Login</a>
+    </p>
+  </mat-card-content>
+</mat-card>

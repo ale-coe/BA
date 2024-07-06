@@ -1,0 +1,8 @@
+@import "mixins";
+
+@include hostBaseStyle;
+
+:host {
+  align-items: center;
+  justify-content: center;
+}

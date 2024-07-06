@@ -1,0 +1,80 @@
+<mat-toolbar class="top-bar" color="primary">
+  <div class="logo-title">
+    <img
+      width="35"
+      height="35"
+      src="assets/icon__tb.png"
+      alt=""
+      class="logo"
+      [routerLink]="['/', 'main', 'home']"
+    />
+    <span>Cash4Trash {{ title$ | async }} </span>
+  </div>
+  <button mat-icon-button [matMenuTriggerFor]="menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+</mat-toolbar>
+<div class="content">
+  <router-outlet></router-outlet>
+</div>
+<mat-toolbar class="bottom-bar" color="primary">
+  <button [routerLink]="['/', 'main', 'home']" mat-icon-button>
+    <mat-icon [ngClass]="{ active: (activeMainscreen$ | async) === 'home' }"
+      >home</mat-icon
+    >
+  </button>
+  <button [routerLink]="['/', 'main', 'ladder']" mat-icon-button>
+    <mat-icon [ngClass]="{ active: (activeMainscreen$ | async) === 'ladder' }"
+      >emoji_events</mat-icon
+    >
+  </button>
+  <button [routerLink]="['/', 'main', 'feed']" mat-icon-button>
+    <mat-icon [ngClass]="{ active: (activeMainscreen$ | async) === 'feed' }"
+      >dynamic_feed</mat-icon
+    >
+  </button>
+  <button
+    *ngIf="isAdmin$ | async"
+    [routerLink]="['/', 'main', 'admin']"
+    mat-icon-button
+  >
+    <mat-icon [ngClass]="{ active: (activeMainscreen$ | async) === 'admin' }"
+      >admin_panel_settings</mat-icon
+    >
+  </button>
+</mat-toolbar>
+
+<mat-menu #menu="matMenu">
+  <button [routerLink]="['/', 'main', 'profile']" mat-menu-item>
+    <mat-icon>person</mat-icon>
+    <span>Profil</span>
+  </button>
+  <button [routerLink]="['/', 'main', 'feedback']" mat-menu-item>
+    <mat-icon>rate_review</mat-icon>
+    <span>Feedback</span>
+  </button>
+  <button [routerLink]="['/', 'main', 'products']" mat-menu-item>
+    <mat-icon>currency_exchange</mat-icon>
+    <span>Punkte einlösen</span>
+  </button>
+  <button mat-menu-item (click)="showInviteFriendDialog()">
+    <mat-icon>group_add</mat-icon>
+    <span>Freund einladen</span>
+  </button>
+  <button mat-menu-item (click)="showTwitterDialog()">
+    <mat-icon>post_add</mat-icon>
+    <span>Tweeten</span>
+  </button>
+  <button mat-menu-item (click)="showPointCollectionDialog()">
+    <mat-icon>my_location</mat-icon>
+    <span>Ziel von Cash4Trash</span>
+  </button>
+  <button mat-menu-item (click)="showPrivacyDialog()">
+    <mat-icon>privacy_tip</mat-icon>
+    <span>Datenschutz</span>
+  </button>
+  <button (click)="logout()" mat-menu-item>
+    <mat-icon>logout</mat-icon>
+    <span>Abmelden</span>
+  </button>
+</mat-menu>

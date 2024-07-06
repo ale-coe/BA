@@ -1,0 +1,21 @@
+@use "@angular/material" as mat;
+@import "colors";
+
+@include mat.all-component-typographies();
+@include mat.core();
+
+$c4t-primary: mat.define-palette($mat-primary);
+$c4t-accent: mat.define-palette($mat-accent);
+$c4t-warn: mat.define-palette($mat-warn);
+
+$c4t-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $c4t-primary,
+      accent: $c4t-accent,
+      warn: $c4t-warn,
+    ),
+  )
+);
+
+@include mat.all-component-themes($c4t-theme);

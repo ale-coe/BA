@@ -1,0 +1,64 @@
+<div class="overlay-wrapper">
+  <div class="landmarks">
+    <mat-card *ngFor="let landmark of landmarks; index as i">
+      <mat-card-header>
+        <mat-card-title>{{ landmark.name }}</mat-card-title>
+        <mat-card-subtitle>{{ landmark.position }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-form-field>
+          <mat-label>Typ</mat-label>
+          <mat-select
+            [value]="landmark.landmarkType.landmarkTypeId"
+            [disabled]="true"
+          >
+            <mat-option [value]="landmark.landmarkType.landmarkTypeId">{{
+              landmark.landmarkType.label
+            }}</mat-option>
+          </mat-select></mat-form-field
+        >
+        <mat-form-field *ngIf="isEvent">
+          <mat-label>Zusätzliche Informationen</mat-label>
+          <textarea
+            [disabled]="true"
+            [value]="landmark.additionalInfo"
+            matInput
+            rows="5"
+          ></textarea>
+        </mat-form-field>
+        <mat-form-field [formGroup]="formArray.at(i)">
+          <mat-label>Anzeigezeitraum</mat-label>
+          <mat-date-range-input [rangePicker]="picker">
+            <input matStartDate formControlName="start" />
+            <input matEndDate formControlName="end" />
+          </mat-date-range-input>
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-date-range-picker #picker></mat-date-range-picker>
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <app-loading-button
+          [disabled]="isLoading || formArray.at(i).status !== 'VALID'"
+          color=""
+          (_click)="updateLandmark(i)"
+          >Speichern</app-loading-button
+        >
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <app-overlay *ngIf="isLoading"></app-overlay>
+</div>
+<mat-paginator
+  [hidePageSize]="true"
+  [length]="length"
+  [pageSize]="10"
+  [pageSizeOptions]="[5, 10, 25, 100]"
+>
+</mat-paginator>
+
+<button mat-fab color="primary" (click)="addLandmark()">
+  <mat-icon>add</mat-icon>
+</button>

@@ -1,0 +1,37 @@
+<mat-card>
+  <mat-card-content>
+    <h1>Cash4Trash</h1>
+    <img src="assets/icons/icon-192x192.png" alt="logo" width="192" />
+    <form class="login-form" [formGroup]="formGroup" (ngSubmit)="login()">
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input formControlName="email" matInput type="email" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Passwort</mat-label>
+        <input type="password" formControlName="password" matInput #password />
+        <button
+          type="button"
+          [disabled]="isLoading || !formGroup.controls.password.value.length"
+          matSuffix
+          mat-icon-button
+          (click)="showContent(password)"
+        >
+          <mat-icon>visibility</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <app-loading-button
+        [showSpinner]="isLoading"
+        [disabled]="isLoading || formGroup.status !== 'VALID'"
+        >Anmelden</app-loading-button
+      >
+    </form>
+
+    <p class="register-link">
+      Noch kein Konto vorhanden?
+      <a [routerLink]="['/', 'auth', 'register']">Registrieren</a>
+    </p>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,14 @@
+.mat-mdc-dialog-content {
+  display: flex;
+  flex-direction: column;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .mat-mdc-form-field {
+      width: 100%;
+    }
+  }
+}

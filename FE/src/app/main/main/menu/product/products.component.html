@@ -1,0 +1,45 @@
+<div class="overlay-wrapper">
+  <h2>
+    <ng-container *ngIf="points !== null">
+      Du hast noch {{ points | number : "1.0-0" }}
+      {{ points === 1 ? "Punkt" : "Punkte" }} übrig
+    </ng-container>
+    <ng-container *ngIf="points === null"
+      >Punkte werden ermittelt...</ng-container
+    >
+  </h2>
+  <div class="products">
+    <mat-card *ngFor="let product of products; index as i">
+      <mat-card-header>
+        <mat-card-title>{{ product.name }}</mat-card-title>
+        <mat-card-subtitle>{{ product.price }} Punkte</mat-card-subtitle>
+      </mat-card-header>
+
+      <app-image
+        class="app-image"
+        [src]="[
+          'assets/loading.png',
+          'assets/product-placeholder.webp',
+          'productImage',
+          product.imagePath
+        ]"
+      ></app-image>
+      <mat-card-actions align="end">
+        <app-loading-button
+          [disabled]="isLoading || (points !== null && points < product.price)"
+          color="primary"
+          (_click)="buyProduct(i)"
+          >Kaufen</app-loading-button
+        >
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <app-overlay *ngIf="isLoading"></app-overlay>
+</div>
+<mat-paginator
+  [hidePageSize]="true"
+  [length]="length"
+  [pageSize]="10"
+  [pageSizeOptions]="[5, 10, 25, 100]"
+>
+</mat-paginator>

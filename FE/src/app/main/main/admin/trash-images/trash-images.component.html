@@ -1,0 +1,43 @@
+<div class="overlay-wrapper">
+  <div class="images">
+    <mat-card *ngFor="let trashImage of trashImages; index as i">
+      <mat-card-header>
+        <mat-card-title>{{
+          trashImage.user.username || trashImage.user.email
+        }}</mat-card-title>
+        <mat-card-subtitle>{{
+          trashImage.uploadDate | date : "dd.MM.yyyy HH:mm"
+        }}</mat-card-subtitle>
+      </mat-card-header>
+
+      <app-image
+        class="app-image"
+        [src]="[
+          'assets/loading.png',
+          'assets/loading.png',
+          'trashImage',
+          trashImage.name
+        ]"
+      ></app-image>
+      <mat-card-content>
+        <mat-checkbox [formControl]="formArray.at(i)">Freigegeben</mat-checkbox>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <app-loading-button
+          [disabled]="isLoading"
+          color=""
+          (_click)="updateTrashImage(i)"
+          >Speichern</app-loading-button
+        >
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <app-overlay *ngIf="isLoading"></app-overlay>
+</div>
+<mat-paginator
+  [hidePageSize]="true"
+  [length]="length"
+  [pageSize]="10"
+  [pageSizeOptions]="[5, 10, 25, 100]"
+>
+</mat-paginator>

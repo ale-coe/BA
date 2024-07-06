@@ -1,0 +1,46 @@
+@import "mixins";
+
+@include hostBaseStyle;
+
+:host {
+  padding: unset;
+  padding-bottom: 10px;
+}
+
+.mat-mdc-progress-spinner {
+  top: 50%;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.user-profile {
+  flex: 1 1 0;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+
+  .mat-divider {
+    margin-bottom: 20px;
+    flex: 0 0 auto;
+  }
+
+  .profile-image {
+    width: 100%;
+    max-width: 250px;
+    align-self: center;
+    position: relative;
+    display: flex;
+
+    .mat-mdc-mini-fab {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+    }
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+}

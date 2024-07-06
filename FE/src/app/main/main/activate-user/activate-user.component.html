@@ -1,0 +1,14 @@
+<p>Aktiviere deinen Account hier!</p>
+
+<form class="activation-form" [formGroup]="formGroup" (ngSubmit)="activate()">
+  <mat-form-field>
+    <mat-label>Aktivierungscode</mat-label>
+    <input formControlName="activationCode" matInput />
+  </mat-form-field>
+
+  <app-loading-button
+    [showSpinner]="isLoading"
+    [disabled]="isLoading || formGroup.status !== 'VALID'"
+    >Aktivieren</app-loading-button
+  >
+</form>

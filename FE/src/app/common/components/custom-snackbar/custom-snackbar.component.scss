@@ -1,0 +1,26 @@
+@import "colors";
+
+::ng-deep .pop-up.warn.mat-mdc-snack-bar-container .mdc-snackbar__surface {
+  background-color: get-theme-color("warn") !important;
+  color: get-theme-contrast-color("warn") !important;
+}
+
+::ng-deep .pop-up.info.mat-mdc-snack-bar-container .mdc-snackbar__surface {
+  background-color: get-theme-color("accent") !important;
+  color: get-theme-contrast-color("accent") !important;
+}
+
+::ng-deep .pop-up.success.mat-mdc-snack-bar-container .mdc-snackbar__surface {
+  background-color: get-theme-color() !important;
+  color: get-theme-contrast-color() !important;
+}
+
+:host {
+  display: flex;
+  align-items: center;
+  padding: 10px 5px;
+}
+
+p {
+  margin: 0;
+}

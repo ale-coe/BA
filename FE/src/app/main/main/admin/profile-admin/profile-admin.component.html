@@ -1,0 +1,85 @@
+<mat-form-field class="example-full-width">
+  <mat-label>Nutzer</mat-label>
+  <input
+    type="text"
+    matInput
+    [formControl]="formControl"
+    [matAutocomplete]="auto"
+  />
+  <mat-autocomplete
+    #auto="matAutocomplete"
+    [displayWith]="displayFn"
+    (optionSelected)="onSelectionChange($event)"
+  >
+    <mat-option *ngFor="let option of options | async" [value]="option">{{
+      option.email
+    }}</mat-option>
+  </mat-autocomplete>
+</mat-form-field>
+
+<mat-spinner *ngIf="isLoading" diameter="40"></mat-spinner>
+
+<div class="user-profile" *ngIf="userProfileId">
+  <mat-divider></mat-divider>
+  <div class="profile-image">
+    <app-image
+      [src]="profileImage"
+      (imageLoaded)="handleImageLoaded()"
+    ></app-image>
+    <button
+      [disabled]="
+        profileImage === 'assets/profile-placeholder.webp' ||
+        loadingProfileImage ||
+        saving
+      "
+      mat-mini-fab
+      color="warn"
+      (click)="deleteProfileImage()"
+    >
+      <mat-icon>clear</mat-icon>
+    </button>
+  </div>
+
+  <form [formGroup]="formGroup" (ngSubmit)="updateUserProfile()">
+    <mat-checkbox formControlName="disabled">Gesperrt</mat-checkbox>
+    <mat-form-field>
+      <mat-label>Benutzername</mat-label>
+      <input [readonly]="true" formControlName="username" matInput />
+      <button
+        type="button"
+        matSuffix
+        mat-icon-button
+        (click)="resetValue('username')"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Stadt</mat-label>
+      <input [readonly]="true" formControlName="city" matInput />
+      <button
+        type="button"
+        matSuffix
+        mat-icon-button
+        (click)="resetValue('city')"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Nutzerrolle</mat-label>
+      <mat-select formControlName="userRole">
+        <mat-option [value]="eUserTypes.USER">{{ eUserTypes.USER }}</mat-option>
+        <mat-option [value]="eUserTypes.ADMIN">{{
+          eUserTypes.ADMIN
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <app-loading-button [disabled]="saving" [showSpinner]="saving"
+      >Speichern</app-loading-button
+    >
+  </form>
+</div>

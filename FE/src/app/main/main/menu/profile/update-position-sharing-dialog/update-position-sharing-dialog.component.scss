@@ -1,0 +1,19 @@
+.mat-mdc-dialog-content {
+  display: flex;
+  flex-direction: column;
+
+  .mat-mdc-list {
+    max-height: 400px;
+    overflow-y: scroll;
+    margin-bottom: 5px;
+    padding: 0;
+
+    .email {
+      margin-left: 10px;
+    }
+  }
+
+  .mat-divider {
+    margin: 15px 0;
+  }
+}

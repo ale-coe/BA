@@ -1,0 +1,23 @@
+:host {
+  display: flex;
+  width: 120px;
+}
+
+h3,
+p {
+  margin: 0;
+}
+
+.profile-image {
+  width: 120px;
+  display: flex;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.mat-mdc-progress-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

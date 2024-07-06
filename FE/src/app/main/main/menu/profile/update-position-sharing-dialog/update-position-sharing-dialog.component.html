@@ -1,0 +1,45 @@
+<h2 mat-dialog-title>Standorteinstellungen</h2>
+<mat-dialog-content>
+  <p *ngIf="!positionShared.length">
+    Du teilst deinen Standort mit niemanden, füge doch jemanden hinzu!
+  </p>
+  <ng-container *ngIf="positionShared.length">
+    <label>Standort wird geteilt mit:</label>
+    <mat-list>
+      <mat-list-item *ngFor="let _positionShared of positionShared">
+        <mat-checkbox
+          [checked]="selection.isSelected(_positionShared.positionSharingId)"
+          (change)="
+            $event ? selection.toggle(_positionShared.positionSharingId) : null
+          "
+          >{{ _positionShared.sharedForUser.email }}</mat-checkbox
+        >
+      </mat-list-item>
+    </mat-list>
+  </ng-container>
+  <app-loading-button
+    [disabled]="isLoading || !selection.selected.length"
+    [showSpinner]="isLoading"
+    color="warn"
+    (_click)="deletePositionShared()"
+    >Ausgewählte Nutzer entfernen
+  </app-loading-button>
+  <mat-divider></mat-divider>
+  <mat-form-field>
+    <mat-label>Emailadresse eingeben</mat-label>
+    <input [formControl]="formControl" matInput />
+    <mat-error *ngFor="let error of this.formControl.errors | formError">{{
+      error
+    }}</mat-error>
+  </mat-form-field>
+
+  <app-loading-button
+    [disabled]="isLoading || formControl.status !== 'VALID'"
+    [showSpinner]="isLoading"
+    (_click)="addUser()"
+    >Nutzer Hinzufügen
+  </app-loading-button>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Schließen</button>
+</mat-dialog-actions>

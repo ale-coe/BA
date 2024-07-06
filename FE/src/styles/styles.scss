@@ -1,0 +1,40 @@
+* {
+  box-sizing: border-box;
+}
+
+body,
+app-root {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+}
+
+.initial-messsage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.mat-mdc-dialog-title {
+  margin-bottom: 0 !important;
+}
+
+// such that tip of marker points to actual location
+.leaflet-marker-shadow,
+.leaflet-marker-icon {
+  margin-left: -12px;
+  margin-top: -41px;
+}
+
+// account for custom marker icon
+.leaflet-popup.leaflet-zoom-animated {
+  bottom: 21px !important;
+}
+
+.leaflet-popup-content {
+  width: auto !important;
+}

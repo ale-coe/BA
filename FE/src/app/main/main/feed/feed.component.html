@@ -1,0 +1,86 @@
+<div class="overlay-wrapper">
+  <div class="feed">
+    <ng-container *ngFor="let feedItem of feed">
+      <ng-container [ngSwitch]="feedItem.type">
+        <mat-card *ngSwitchCase="'image'" class="image">
+          <mat-card-header>
+            <mat-card-title>Bild</mat-card-title>
+            <mat-card-subtitle
+              >{{ feedItem.user?.username || "Unbekannter Benutzer" }} am
+              {{ $any(feedItem).uploadDate | date }}</mat-card-subtitle
+            >
+          </mat-card-header>
+          <mat-card-content>
+            <!-- TODO: replace with better backup image -->
+            <app-image
+              class="app-image"
+              [src]="[
+                'assets/loading.png',
+                'assets/loading.png',
+                'trashImage',
+                $any(feedItem).name
+              ]"
+            ></app-image>
+            <div class="description">
+              <p>
+                <strong>Kategorie</strong>:
+                {{ $any(feedItem).category.label | translate }}
+              </p>
+              <p>
+                <strong>Menge</strong>:
+                {{ $any(feedItem).amount.label | translate }}
+              </p>
+            </div>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card *ngSwitchCase="'socialMediaPost'" class="social-media-post">
+          <mat-card-header>
+            <mat-card-title>Socialmediapost</mat-card-title>
+            <mat-card-subtitle
+              >{{ feedItem.user?.username || "Unbekannter Benutzer" }} am
+              {{ $any(feedItem).postDate | date }}</mat-card-subtitle
+            >
+          </mat-card-header>
+          <mat-card-content>
+            <p>{{ $any(feedItem).postContent }}</p>
+          </mat-card-content>
+        </mat-card>
+      </ng-container>
+    </ng-container>
+  </div>
+  <app-overlay *ngIf="isLoading"></app-overlay>
+</div>
+<mat-paginator
+  [hidePageSize]="true"
+  [length]="length"
+  [pageSize]="10"
+  [pageSizeOptions]="[5, 10, 25, 100]"
+>
+</mat-paginator>
+
+<!-- <span class="placement">{{ placement.placement }}.</span>
+        <div>
+          <app-image
+            class="app-image"
+            [src]="
+              placement.profileImage
+                ? [
+                    'assets/loading.png',
+                    'assets/profile-placeholder.webp',
+                    'profileImage',
+                    placement.profileImage
+                  ]
+                : 'assets/profile-placeholder.webp'
+            "
+          ></app-image>
+          <span *ngIf="placement.username || placement.city" class="userinfo">
+            <ng-container *ngIf="placement.username"
+              >{{ placement.username }}
+            </ng-container>
+            <ng-container *ngIf="placement.city"
+              >({{ placement.city }})</ng-container
+            ></span
+          >
+        </div>
+        <span class="points">{{ placement.placementPoints }} Punkte</span> -->

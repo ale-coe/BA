@@ -1,0 +1,44 @@
+@import "mixins";
+
+@include hostBaseStyle(true);
+
+:host {
+  position: relative;
+}
+
+h2 {
+  text-align: center;
+}
+
+// wrapper is not scrollable therefore overlay stays in a fixed position
+.overlay-wrapper {
+  flex: 1 1 0;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  .products {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1 1 0;
+    overflow-y: scroll;
+    padding: 5px 5px 0 5px;
+    position: relative;
+
+    .mat-mdc-card {
+      display: flex;
+      flex-direction: column;
+
+      .app-image {
+        align-self: center;
+        max-width: 250px;
+      }
+
+      &:last-of-type {
+        margin-bottom: 3px;
+      }
+    }
+  }
+}

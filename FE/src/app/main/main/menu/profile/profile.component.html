@@ -1,0 +1,62 @@
+<div class="profile-image">
+  <app-image
+    [src]="profileImage"
+    (imageLoaded)="handleImageLoaded()"
+  ></app-image>
+  <button
+    [disabled]="loadingProfileImage || isLoading"
+    (click)="filePicker.click()"
+    mat-mini-fab
+    color="primary"
+  >
+    <mat-icon>edit</mat-icon>
+  </button>
+</div>
+<mat-divider></mat-divider>
+<div class="field-wrapper">
+  <form [formGroup]="formGroup" (ngSubmit)="save()">
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input formControlName="email" matInput />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Benutzername</mat-label>
+      <input formControlName="username" matInput />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Stadt</mat-label>
+      <input formControlName="city" matInput />
+    </mat-form-field>
+
+    <app-loading-button
+      [disabled]="isLoading || formGroup.status !== 'VALID'"
+      [showSpinner]="saving"
+      >Speichern</app-loading-button
+    >
+  </form>
+  <input
+    hidden
+    [multiple]="false"
+    type="file"
+    (change)="onFileChange(filePicker.files)"
+    #filePicker
+  />
+  <!-- TODO: Connect Twitter account -->
+  <mat-divider></mat-divider>
+  <div class="position-share-settings">
+    <mat-checkbox [formControl]="formControl">Standort teilen</mat-checkbox>
+    <button
+      [disabled]="isLoading"
+      class="btn"
+      mat-raised-button
+      color="primary"
+      (click)="openUpdatePositionSharingDialog()"
+    >
+      Einstellungen
+    </button>
+  </div>
+  <ng-container *ngIf="false">
+    <mat-divider></mat-divider>
+    <app-facebook-adapter></app-facebook-adapter>
+  </ng-container>
+</div>

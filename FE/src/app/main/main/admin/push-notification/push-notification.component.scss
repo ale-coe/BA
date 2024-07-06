@@ -1,0 +1,13 @@
+@import "mixins";
+
+@include hostBaseStyle;
+
+:host {
+  padding: unset;
+  padding-bottom: 10px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}

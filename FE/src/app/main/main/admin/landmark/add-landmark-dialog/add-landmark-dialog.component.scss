@@ -1,0 +1,12 @@
+.mat-mdc-dialog-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.mat-mdc-form-field {
+  width: 100%;
+
+  &:last-of-type {
+    margin-bottom: 50px;
+  }
+}

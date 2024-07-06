@@ -1,0 +1,10 @@
+<button
+  [disabled]="disabled"
+  mat-raised-button
+  [color]="color"
+  [ngStyle]="ngStyle"
+  (click)="_click.emit()"
+>
+  <mat-spinner *ngIf="showSpinner" diameter="25"></mat-spinner>
+  <ng-content></ng-content>
+</button>

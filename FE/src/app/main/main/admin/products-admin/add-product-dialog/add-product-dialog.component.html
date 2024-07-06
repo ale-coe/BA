@@ -1,0 +1,42 @@
+<h2 mat-dialog-title>Produkt hinzufügen</h2>
+<mat-dialog-content>
+  <form [formGroup]="formGroup">
+    <div class="product-image">
+      <app-image class="app-image" [src]="this.productImage"></app-image>
+      <button
+        type="button"
+        [disabled]="isLoading"
+        (click)="filePicker.click()"
+        mat-mini-fab
+        color="primary"
+      >
+        <mat-icon>edit</mat-icon>
+      </button>
+    </div>
+    <input
+      hidden
+      [multiple]="false"
+      type="file"
+      (change)="onFileChange(filePicker.files)"
+      #filePicker
+    />
+    <mat-form-field>
+      <mat-label>Produktname</mat-label>
+      <input formControlName="name" matInput />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Produkpreis</mat-label>
+      <input formControlName="price" type="number" matInput />
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Schließen</button>
+  <app-loading-button
+    color=""
+    [disabled]="isLoading || formGroup.status !== 'VALID'"
+    [showSpinner]="isLoading"
+    (_click)="addProduct()"
+    >Speichern
+  </app-loading-button>
+</mat-dialog-actions>

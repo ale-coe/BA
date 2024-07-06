@@ -1,0 +1,9 @@
+<mat-form-field>
+  <mat-label>Adminbereiche</mat-label>
+  <mat-select [formControl]="formControl">
+    <mat-option *ngFor="let option of options; index as i" [value]="i">{{
+      option.label
+    }}</mat-option>
+  </mat-select>
+</mat-form-field>
+<ng-template #container></ng-template>
